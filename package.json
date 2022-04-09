@@ -1,0 +1,36 @@
+{
+  "name": "soc-mutual-assistance-app-2_0",
+  "version": "1.0.0",
+  "description": "A startup project that allows you to interact with those in need and help each other on a non-commercial basis.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "server": "nodemon app.js",
+    "client": "npm run dev --prefix client1",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "type": "module",
+  "keywords": [
+    "Next.js",
+    "React",
+    "Node.js",
+    "Express.js",
+    "social",
+    "mutual",
+    "aid"
+  ],
+  "author": "Ivan Bratanov <bratanov.ivan.a@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "config": "^3.3.7",
+    "express": "^4.17.3",
+    "express-validator": "^6.14.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.2.10"
+  },
+  "devDependencies": {
+    "concurrently": "^7.1.0",
+    "nodemon": "^2.0.15"
+  }
+}
