@@ -1,0 +1,18 @@
+.logoWrapper {
+  display: flex;
+  align-items: center;
+  gap: 12.8px
+}
+
+.logo {
+  height: 30px;
+}
+
+.appName {
+  font-family: 'Nunito Sans';
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 150%;
+  letter-spacing: .5em;
+  cursor: pointer;
+}

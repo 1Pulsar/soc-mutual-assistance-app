@@ -1,0 +1,5 @@
+{
+  "port": 5000,
+  "jwtsecret": "very secret key",
+  "mongoUri": "mongodb+srv://BratanovIvan:qwerty123@cluster0.lbyxe.mongodb.net/app?retryWrites=true&w=majority"
+}

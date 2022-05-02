@@ -1,0 +1,43 @@
+.header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 50;
+  width: 100%;
+  min-height: 30px;
+  padding: 15px 0;
+}
+
+.headerContainer {
+  max-width: 1057px;
+  margin: 0 auto;
+  padding: 0 15px;
+  box-sizing: content-box;
+}
+
+.headerBody {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar {
+  display: flex;
+  gap:20px;
+  a {
+    color: rgba(0, 2, 0, 0.8);
+    font-weight:500;
+    font-size: 12px;
+    line-height: 120%;
+    letter-spacing: 0.05em;
+    transition: all ease .4s;
+  }
+  a:hover {
+    color: #000200;
+  }
+}
+
+.buttonsBlock {
+  display: flex;
+  gap: 10px;
+}
