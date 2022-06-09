@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node app.js",
     "server": "nodemon app.js",
-    "client": "npm run dev --prefix client1",
+    "client": "npm run dev --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "type": "module",
@@ -24,6 +24,7 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "config": "^3.3.7",
+    "cors": "^2.8.5",
     "express": "^4.17.3",
     "express-validator": "^6.14.0",
     "jsonwebtoken": "^8.5.1",

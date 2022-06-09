@@ -16,24 +16,66 @@
   display: flex;
   justify-content: space-between;
   font-family: 'Nunito Sans';
+  font-size: 12px;
+  line-height: 150%;
 }
 
 .informationBlockWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.footerLink {
+  color: #519032;
+  cursor: pointer;
+  text-decoration: underline;
+  transition: color .3s ease 0s;
+  &:hover {
+    color: rgba(81, 144, 50, 0.5);
+  }
 }
 
 .companyInformation {
+
   p {
   }
 }
 
-.footerLink {
+.buttonsBlock {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-.buttonsBlock {
+.brandLogo {
+  height: 20px;
+  width: 20px;
 }
 
 .brandLogoRing {
+
 }
 
 .brandLogoNoRing {
+  box-sizing: border-box;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #519032;
+  .logoImage {
+    height: 13px;
+    width: 13px;
+  }
+}
+
+.linksColumnWrapper {
+  display: flex;
+  flex-flow: column wrap;
+  gap: 5px;
+}
+
+.linksColumnHeader {
+    margin: 10px 0 20px 0;
 }

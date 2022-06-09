@@ -1,0 +1,41 @@
+.textField {
+  margin-top: 5px;
+}
+
+.textFieldFloating2 {
+  position: relative;
+}
+
+.textFieldFloating2 .textFieldInput {
+  height: calc(2.5rem + 2px);
+  padding: 0.5rem 0.75rem;
+}
+
+.textFieldFloating2 .textFieldLabel {
+  position: absolute;
+  top: 50%;
+  left: 0.3125rem;
+  display: flex;
+  transform: translateY(-50%);
+  pointer-events: none;
+  border: none;
+  background-color: #fff;
+  color: #757575;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  transition: top 0.1s ease-in-out, scale 0.1s ease-in-out;
+}
+
+.textFieldFloating2 .textFieldInput::-moz-placeholder {
+  color: transparent;
+}
+
+.textFieldFloating2 .textFieldInput::placeholder {
+  color: transparent;
+}
+
+.textFieldFloating2 .textFieldInput:focus~.textFieldLabel,
+.textFieldFloating2 .textFieldInput:not(:placeholder-shown)~.textFieldLabel {
+  top: 0;
+  transform: translateY(-50%) scale(0.75);
+}

@@ -6,6 +6,10 @@
   }
 }
 
+body.lock {
+  overflow: hidden;
+}
+
 ul[class], ol[class] {
   padding: 0;
 }
