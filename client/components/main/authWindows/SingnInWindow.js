@@ -2,26 +2,34 @@ import {toast} from "react-toastify";
 import style from "./AuthWindow.module.scss";
 import InputField from "../../common/InputField/InputField";
 import Button from "../../common/Button";
-import {useState} from "react";
 import useHttp from "../../../hooks/hook.fetch";
+import useInput from "../../../hooks/hook.input";
 
 const SignInWindow = () => {
-    const [email, setEmail] = useState('')
-    const [phoneNumber, setPhoneNumber] = useState('')
-    const [password, setPassword] = useState('')
-    const [repeatPassword, setRepeatPassword] = useState('')
-    const [name, setName] = useState('')
-    const [surname, setSurname] = useState('')
+    const email = useInput('', {isEmpty: true, minLength: 3, isEmail: true})
+    const phoneNumber = useInput('', {isEmpty: true, minLength: 7})
+    const password = useInput('', {isEmpty: true, minLength: 6})
+    const repeatPassword = useInput('', {isEmpty: true, minLength: 6})
+    const name = useInput('', {isEmpty: true})
+    const surname = useInput('', {isEmpty: true})
     const {isLoading, error, sendRequest} = useHttp()
 
     const registerHandler = async () => {
         try {
-            if (password !== repeatPassword) {
-                return toast.error('Passwords don`t match')
+            if (password.value !== repeatPassword.value) {
+                return toast.error('Passwords did not match')
             }
-            const data = await sendRequest.postData('api/auth/register', {email, phoneNumber, password, name, surname})
+            const data = await sendRequest.postData('api/auth/register',
+                {
+                    email: email.value,
+                    phoneNumber: phoneNumber.value,
+                    password: password.value,
+                    name: name.value,
+                    surname: surname.value
+                })
             if (!data.errors) {
                 toast.success('You are successfully registered!')
+                declineButtonClickFunction()
             }
         } catch (e) {
             console.log(error)
@@ -29,30 +37,50 @@ const SignInWindow = () => {
     }
 
     const declineButtonClickFunction = () => {
-        setEmail('')
-        setPassword('')
+        email.setValue('')
+        password.setValue('')
+        name.setValue('')
+        surname.setValue('')
+        repeatPassword.setValue('')
+        phoneNumber.setValue('')
         toast.success("Fields cleaned");
     }
+
+    const buttonIsDisabled = !email.errorsArray.length && email.value && !password.errorsArray.length && password.value
+        && !name.errorsArray.length && name.value && !surname.errorsArray.length && surname.value
+        && !repeatPassword.errorsArray.length && repeatPassword.value && !phoneNumber.errorsArray.length && phoneNumber.value
 
     return (
         <div className={style.loginWindowWrapper}>
             <p>Hello, Enter some information about you!</p>
-            <InputField inputId={'name'} inputName={'name'} inputPlaceholder={'Name'} value={name}
-                        inputFieldWidth={'100%'} inputType={'name'} setValue={setName}/>
-            <InputField inputId={'surname'} inputName={'surname'} inputPlaceholder={'Surname'} value={surname}
-                        inputFieldWidth={'100%'} inputType={'surname'} setValue={setSurname}/>
-            <InputField value={email} inputId={'email'} inputName={'email'} inputPlaceholder={'Email'}
-                        inputFieldWidth={'100%'} inputType={'email'} setValue={setEmail}/>
-            <InputField value={phoneNumber} inputId={'phoneNumber'} inputName={'phoneNumber'}
+            <InputField error={name.errorsArray.length && name.isDirty} errorsArray={name.errorsArray}
+                        value={name.value} inputId={'name'} inputName={'name'} inputPlaceholder={'Name'}
+                        inputFieldWidth={'100%'} inputType={'name'} onChange={name.onChange} onBlur={name.onBlur}/>
+            <InputField error={surname.errorsArray.length && surname.isDirty} errorsArray={surname.errorsArray}
+                        value={surname.value} inputId={'surname'} inputName={'surname'} inputPlaceholder={'Surname'}
+                        inputFieldWidth={'100%'} inputType={'surname'} onChange={surname.onChange}
+                        onBlur={surname.onBlur}/>
+            <InputField error={email.errorsArray.length && email.isDirty} errorsArray={email.errorsArray}
+                        value={email.value} inputId={'email'} inputName={'email'} inputPlaceholder={'Email'}
+                        inputFieldWidth={'100%'} inputType={'email'} onChange={email.onChange} onBlur={email.onBlur}/>
+            <InputField error={phoneNumber.errorsArray.length && phoneNumber.isDirty}
+                        errorsArray={phoneNumber.errorsArray}
+                        value={phoneNumber.value} inputId={'phoneNumber'} inputName={'phoneNumber'}
                         inputPlaceholder={'Phone Number'}
-                        inputFieldWidth={'100%'} inputType={'tel'} setValue={setPhoneNumber}/>
-            <InputField inputId={'password'} inputName={'password'} inputPlaceholder={'Password'} value={password}
-                        inputFieldWidth={'100%'} inputType={'password'} setValue={setPassword}/>
-            <InputField inputId={'repeatPassword'} inputName={'repeatPassword'}
-                        inputPlaceholder={'Please, repeat password'} value={repeatPassword}
-                        inputFieldWidth={'100%'} inputType={'repeatPassword'} setValue={setRepeatPassword}/>
+                        inputFieldWidth={'100%'} inputType={'phoneNumber'} onChange={phoneNumber.onChange}
+                        onBlur={phoneNumber.onBlur}/>
+            <InputField error={password.errorsArray.length && password.isDirty} errorsArray={password.errorsArray}
+                        value={password.value} inputId={'password'} inputName={'password'} inputPlaceholder={'Password'}
+                        inputFieldWidth={'100%'} inputType={'password'} onChange={password.onChange}
+                        onBlur={password.onBlur}/>
+            <InputField error={repeatPassword.errorsArray.length && repeatPassword.isDirty}
+                        errorsArray={repeatPassword.errorsArray}
+                        value={repeatPassword.value} inputId={'repeatPassword'} inputName={'repeatPassword'}
+                        inputPlaceholder={'Repeat password'}
+                        inputFieldWidth={'100%'} inputType={'password'} onChange={repeatPassword.onChange}
+                        onBlur={repeatPassword.onBlur}/>
             <div className={style.buttonsBlock}>
-                <Button clickFunction={registerHandler} link={''} borderColor={'#757575'}
+                <Button isDisabled={!buttonIsDisabled} clickFunction={registerHandler} link={''} borderColor={'#757575'}
                         innerText={'Submit'} textColor={'#757575'}
                         hoveredBackgroundColor={'rgba(0, 2, 0, 0.2)'}/>
                 <Button clickFunction={declineButtonClickFunction} link={''} borderColor={'#757575'}

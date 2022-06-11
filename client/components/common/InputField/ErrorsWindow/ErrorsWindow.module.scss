@@ -1,0 +1,35 @@
+.warningWrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 150;
+}
+
+.warningIcon {
+    height: 20px;
+  position: relative;
+}
+
+.warningWindow {
+  display: flex;
+  flex-flow: column;
+  font-size: 12px;
+  &.p {
+    white-space: pre;
+  }
+  position: absolute;
+  left: 40px;
+  opacity: 0;
+  pointer-events: none;
+  background-color: red;
+  border-radius: 5px;
+  color: white;
+  padding: 10px;
+  width: 200px;
+  overflow: hidden;
+  transition: .5s;
+}
+
+.warningWindow.active {
+  opacity: 1;
+}

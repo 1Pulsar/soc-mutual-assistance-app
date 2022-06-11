@@ -56,11 +56,11 @@ router.post('/login',
         const errors = validationResult(req)
 
         if (!errors.isEmpty()) {
-            return res.status(400).json({errors: errors.array, message:'Incorrect login data'})
+            return res.status(400).json({errors: errors, message:'Incorrect login data'})
         }
 
         const {email, password} = req.body
-        const user = User.findOne({email})
+        const user = await User.findOne({email})
 
         if (!user) {
             return res.status(400).json({message: 'User is not found'})
@@ -81,7 +81,7 @@ router.post('/login',
         res.json({token, userId: user.id})
 
     } catch (error) {
-        res.status(500).json({message: 'Something error is occurred, please try again'})
+        res.status(500).json({message: 'Something error is occurred, please try again', error, request:req.body})
     }
 
 })

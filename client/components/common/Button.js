@@ -1,7 +1,17 @@
 import Link from "next/link"
 import {useState} from "react";
+import {toast} from "react-toastify";
 
-const Button = ({link, innerText, backgroundColor='inherit', hoveredBackgroundColor , borderColor, textColor, clickFunction}) => {
+const Button = ({
+                    isDisabled=false,
+                    link,
+                    innerText,
+                    backgroundColor = 'inherit',
+                    hoveredBackgroundColor,
+                    borderColor,
+                    textColor,
+                    clickFunction
+                }) => {
     const [isHover, setHover] = useState(false)
 
     const mouseIn = () => {
@@ -30,7 +40,8 @@ const Button = ({link, innerText, backgroundColor='inherit', hoveredBackgroundCo
         transition: 'all ease .4s',
     }
     return (
-        <Link href={link}><a style={style} onMouseEnter={mouseIn} onMouseLeave={mouseOut} onClick={clickFunction} >{innerText}</a></Link>
+        <Link href={link}><a style={style} onMouseEnter={mouseIn} onMouseLeave={mouseOut}
+                             onClick={isDisabled ? () =>{toast.error('Action prohibited!')} : clickFunction}>{innerText}</a></Link>
     )
 }
 
