@@ -1,7 +1,9 @@
-import style from "./Article.module.scss"
+import whiteStyle from "./Article.module.scss"
+import greenStyle from "./ArticleGreen.module.scss"
 import Button from "../Button";
 
-const Article = ({titleText, paragraphText, decorationColor}) => {
+const Article = ({buttonClickHandler ,titleText, paragraphText, whiteDecorationColor = true, showButton=true, showText=true }) => {
+    const style = whiteDecorationColor ? whiteStyle : greenStyle
     return (<>
             <article className={style.articleWrapper}>
                 <div className={style.articleTitleWrapper}>
@@ -9,9 +11,9 @@ const Article = ({titleText, paragraphText, decorationColor}) => {
                     <h1 className={style.articleTitle}>{titleText}</h1>
                     <div className={style.decorationBlockRight}/>
                 </div>
-                <p>{paragraphText}</p>
-                <Button link={'/'} borderColor={'#67910d'} innerText={'Sign in'} textColor={'#67910d'}
-                        hoveredBackgroundColor={'rgba(0, 2, 0, 0.2)'}/>
+                {showText && <p>{paragraphText}</p>}
+                {showButton && <Button link={''} clickFunction={buttonClickHandler}  borderColor={'#67910d'} innerText={'Sign in'} textColor={'#67910d'}
+                         hoveredBackgroundColor={'rgba(0, 2, 0, 0.2)'}/>}
             </article>
         </>
     )

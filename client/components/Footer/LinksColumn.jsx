@@ -1,8 +1,8 @@
 import style from "./Footer.module.scss";
 
 const LinksColumn = ({header ,linksList}) => {
-    const mappedLinks = linksList.map((item)=> {
-            return <a target="_blank" href={item[1]} className={style.footerLink}>— {item[0]}</a>
+    const mappedLinks = linksList.map((item, index)=> {
+            return <a key={index} target="_blank" href={item[1]} className={style.footerLink}>— {item[0]}</a>
         }
     )
 

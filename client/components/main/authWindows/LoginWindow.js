@@ -5,13 +5,16 @@ import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import useInput from "../../../hooks/hook.input";
 import useHttp from "../../../hooks/hook.fetch";
+import {useDispatch} from "react-redux";
+import {login, setModalStatus} from "../../../Redux/Reducers/appReducer";
 
 const LoginWindow = ({}) => {
     const email = useInput('', {isEmpty: true, minLength: 3, isEmail: true})
     const password = useInput('', {isEmpty: true, minLength: 6})
     const {isLoading, error, sendRequest} = useHttp()
+    const dispatch = useDispatch()
 
-    const registerHandler = async () => {
+    const loginHandler = async () => {
         try {
             const data = await sendRequest.postData('api/auth/login',
                 {
@@ -20,7 +23,9 @@ const LoginWindow = ({}) => {
                 })
             if (!data.errors) {
                 toast.success('You are successfully authorized!')
+                dispatch(login({jwtToken:data.token, userId:data.userId}))
                 declineButtonClickFunction()
+                dispatch(setModalStatus(false))
             }
         } catch (e) {
             console.log(error)
@@ -46,7 +51,7 @@ const LoginWindow = ({}) => {
                         inputFieldWidth={'100%'} inputType={'password'} onChange={password.onChange}
                         onBlur={password.onBlur}/>
             <div className={style.buttonsBlock}>
-                <Button isDisabled={!buttonIsDisabled} clickFunction={registerHandler} link={''} borderColor={'#757575'}
+                <Button isDisabled={!buttonIsDisabled} clickFunction={loginHandler} link={''} borderColor={'#757575'}
                         innerText={'Submit'} textColor={'#757575'}
                         hoveredBackgroundColor={'rgba(0, 2, 0, 0.2)'}/>
                 <Button clickFunction={declineButtonClickFunction} link={''} borderColor={'#757575'}

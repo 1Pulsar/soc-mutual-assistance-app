@@ -10,6 +10,9 @@
   height: calc(2.5rem + 2px);
   padding: 0.5rem 0.75rem;
 }
+.textFieldLabel {
+  border-radius: 5px;
+}
 
 .textFieldFloating2 .textFieldLabel {
   position: absolute;
@@ -47,6 +50,7 @@
   opacity: 0;
   transition: .5s;
   pointer-events: none;
+  z-index: 50;
   &.active {
     opacity: 1;
     pointer-events: all;

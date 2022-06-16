@@ -1,0 +1,15 @@
+.titleAndPriceWrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.postFormBody {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.buttonsBlock {
+  display: flex;
+  gap: 25px;
+}

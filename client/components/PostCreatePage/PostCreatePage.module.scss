@@ -1,0 +1,44 @@
+.postCreate {
+  background: linear-gradient(90deg, #73f95e,#bee931,#f2d622);
+  min-height: 1000px;
+  padding: 0 0 50px 0;
+}
+
+.postCreateContainer {
+  max-width: 1057px;
+  margin: 0 auto;
+  padding: 0 15px;
+  box-sizing: content-box;
+}
+.postCreateBody {
+  width: 100%;
+  position: relative;
+  z-index: 10;
+}
+
+.contentWrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 100px;
+  gap: 50px;
+  opacity: 0;
+  pointer-events: none;
+  transition: 1s;
+  &.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+}
+
+.postForm {
+  z-index: 10;
+}
+
+.afterPostFormImage {
+  top: 57px;
+  width: 100%;
+  position: absolute;
+  z-index: -1;
+}

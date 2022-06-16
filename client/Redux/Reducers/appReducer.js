@@ -1,13 +1,22 @@
 import {createSlice} from "@reduxjs/toolkit";
 
+const storageName = 'userData'
+
 const appReducerSlice = createSlice({
-    name:'app',
+    name: 'app',
     initialState: {
+        appReady: false,
         modalStatus: false,
         modalChildrenName: null,
         authorized: false,
+        name: '',
+        surname: '',
+        balance: '',
+        email: '',
+        phoneNumber: '',
         userId: null,
         nickName: null,
+        jwtToken: null
     },
     reducers: {
         setModalStatus(state, action) {
@@ -15,9 +24,33 @@ const appReducerSlice = createSlice({
         },
         setModalChildrenName(state, action) {
             state.modalChildrenName = action.payload
+        },
+        login(state, action) {
+            state.jwtToken = action.payload.jwtToken
+            state.userId = action.payload.userId
+            localStorage.setItem(storageName, JSON.stringify({
+                userId: action.payload.userId,
+                jwtToken: action.payload.jwtToken
+            }))
+        },
+        logout(state) {
+            state.jwtToken = null
+            state.userId = null
+            localStorage.removeItem(storageName)
+        },
+        setUserInfo(state, action) {
+            const {name, surname, balance, email, phoneNumber} = action.payload
+            state.name = name
+            state.balance = balance
+            state.email = email
+            state.surname = surname
+            state.phoneNumber = phoneNumber
+        },
+        setAppReady(state, action) {
+            state.appReady = action.payload
         }
     },
 })
 
 export default appReducerSlice.reducer
-export const {setModalStatus, setModalChildrenName} = appReducerSlice.actions
+export const {setModalStatus, setModalChildrenName, login, logout, setUserInfo, setAppReady} = appReducerSlice.actions

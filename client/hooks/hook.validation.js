@@ -5,6 +5,7 @@ const useValidation = (value, validations) => {
     const [minLengthError, setMinLengthError] = useState(true)
     const [maxLengthError, setMaxLengthError] = useState(true)
     const [emailError, setEmailError] = useState(false)
+    const [numbersError, setNumbersError] = useState(false)
     const [errorsArray, setErrorsArray] = useState([])
 
     useEffect(() => {
@@ -47,16 +48,29 @@ const useValidation = (value, validations) => {
                     }
                     break
                 case 'isEmail':
-                    const emailErrorMessage = 'field is not valid'
+                    const emailErrorMessage = 'field is not email'
                     const re =
                         /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
                     if (re.test(String(value).toLowerCase())) {
                         setEmailError(false)
                         setErrorsArray(errorsArray.filter((item) => item !== emailErrorMessage))
                     } else {
-                        setEmpty(true)
+                        setEmailError(true)
                         if (!errorsArray.includes(emailErrorMessage, 0) && isEmpty) {
                             setErrorsArray([...errorsArray, emailErrorMessage])
+                        }
+                    }
+                    break
+                case 'isNumbers':
+                    const numbersErrorMessage = 'field is not number'
+                    const regex = /[0-9]|\./
+                    if (regex.test(value)) {
+                        setNumbersError(false)
+                        setErrorsArray(errorsArray.filter((item) => item !== numbersErrorMessage))
+                    } else {
+                        setNumbersError(true)
+                        if (!errorsArray.includes(numbersErrorMessage, 0) && isEmpty) {
+                            setErrorsArray([...errorsArray, numbersErrorMessage])
                         }
                     }
                     break

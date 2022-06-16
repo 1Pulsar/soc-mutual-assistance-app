@@ -4,6 +4,7 @@ import bcrypt from "bcryptjs"
 import expressValidator from "express-validator"
 import jwt from "jsonwebtoken"
 import config from "config"
+import auth from "../middleware/auth.middleware.js";
 
 const check = expressValidator.check
 const validationResult = expressValidator.validationResult
@@ -75,7 +76,7 @@ router.post('/login',
         const token = jwt.sign(
             { UserId: user.id },
             jwtSecret,
-            {expiresIn: '1h'}
+            {expiresIn: '24h'}
         )
 
         res.json({token, userId: user.id})
@@ -84,6 +85,16 @@ router.post('/login',
         res.status(500).json({message: 'Something error is occurred, please try again', error, request:req.body})
     }
 
+})
+
+router.get('/me', auth ,async (req, res) => {
+    try {
+        const {name, surname, email, phoneNumber, balance} = await User.findById(req.user.UserId)
+        res.json({name, surname, email, phoneNumber, balance})
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({message: 'Something error is occurred, please try again'})
+    }
 })
 
 export default router

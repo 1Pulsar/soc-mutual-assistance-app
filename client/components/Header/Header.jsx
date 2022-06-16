@@ -2,11 +2,18 @@ import style from "./Header.module.scss"
 import Link from "next/link"
 import Button from "../common/Button";
 import Logo from "../common/Logo/Logo";
-import {useDispatch} from "react-redux";
-import {setModalChildrenName, setModalStatus} from "../../Redux/Reducers/appReducer";
+import {useDispatch, useSelector} from "react-redux";
+import {logout, setModalChildrenName, setModalStatus} from "../../Redux/Reducers/appReducer";
+import UserIcon from "../common/UserIcon/UserIcon";
 
 const Header = ({whiteLogo = false}) => {
     const dispatch = useDispatch()
+    const userId = useSelector(state => state.app.userId)
+
+    const logOutButtonClickHandler = () => {
+        dispatch(logout())
+    }
+
     const logInButtonClickHandler = () => {
         dispatch(setModalChildrenName('login'))
         dispatch(setModalStatus(true))
@@ -24,18 +31,30 @@ const Header = ({whiteLogo = false}) => {
                 <div className={style.headerBody}>
                     <Logo whiteLogo={whiteLogo}/>
                     <nav className={style.navbar}>
-                        <Link href={'/about'}><a>About us</a></Link>
-                        <Link href={'/posts'}><a>Posts</a></Link>
-                        <Link href={'/create'}><a>Create a post</a></Link>
+                        <Link href={'/'}><a>About us</a></Link>
                         <Link href={'/news'}><a>News</a></Link>
+                        {userId && <>
+                            <Link href={'/posts'}><a>Posts</a></Link>
+                            <Link href={'/create'}><a>Create a post</a></Link>
+                        </>
+                        }
                     </nav>
                     <div className={style.buttonsBlock}>
-                        <Button clickFunction={logInButtonClickHandler} link={'/'} borderColor={'#67910d'}
-                                innerText={'Log in'} textColor={'#67910d'}
-                                hoveredBackgroundColor={'rgba(0, 2, 0, 0.2)'}/>
-                        <Button clickFunction={signInButtonClickHandler} link={'/'} borderColor={'#67910d'}
-                                innerText={'Sign in'} textColor={'#020'} backgroundColor={'#67910d'}
-                                hoveredBackgroundColor={'rgba(103, 145, 13, 0.2)'}/>
+                        {userId ?<>
+                            <Button clickFunction={logOutButtonClickHandler} link={'/'} borderColor={'#67910d'}
+                                    innerText={'Log out'} textColor={'#67910d'}
+                                    hoveredBackgroundColor={'rgba(0, 2, 0, 0.2)'}/>
+                            <UserIcon/>
+                            </>
+                            : <>
+                                <Button clickFunction={logInButtonClickHandler} link={''} borderColor={'#67910d'}
+                                        innerText={'Log in'} textColor={'#67910d'}
+                                        hoveredBackgroundColor={'rgba(0, 2, 0, 0.2)'}/>
+                                <Button clickFunction={signInButtonClickHandler} link={''} borderColor={'#67910d'}
+                                        innerText={'Sign in'} textColor={'#020'} backgroundColor={'#67910d'}
+                                        hoveredBackgroundColor={'rgba(103, 145, 13, 0.2)'}/>
+                            </>
+                        }
                     </div>
                 </div>
             </div>

@@ -1,0 +1,89 @@
+.postWindowWrapper {
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 420px;
+  height: 400px;
+  background-color: rgba(255, 255, 255, 0.90);
+  transition: .5s;
+}
+
+.rightCornerElements {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  text-align: right;
+  font-size: 12px;
+  line-height: 100%;
+  font-weight: lighter;
+  color: grey;
+}
+
+.commonContent {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.windowTitle {
+  font-size: 15px;
+}
+
+.windowText {
+  color: grey;
+  font-weight: lighter;
+  font-size: 14px;
+}
+
+.windowFooterBlock {
+  display: flex;
+  flex-flow: column;
+  gap: 10px;
+}
+
+.footerSeparator {
+  width: 90%;
+  height: 1px;
+  background-color: rgba(117, 117, 117, 0.55);
+  align-self: center;
+}
+
+.paymentWrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.priceWrapper {
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+}
+
+.aroundCoin {
+  width: 25px
+}
+
+.priceValue {
+  font-weight: lighter;
+}
+
+.ownerInformation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  & > p {
+    font-size: 14px;
+    & > span {
+      font-weight: lighter;
+    }
+  }
+}
+
+.ownerImage {
+  height: 35px;
+  width: 35px;
+  border: 1px solid #67910d;
+  border-radius: 100%;
+}

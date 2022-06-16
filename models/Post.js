@@ -5,13 +5,13 @@ const model = mongoose.model
 const Types = mongoose.Types
 
 const schema = new Schema({
-    name: {type:String, require:true},
-    surname: {type:String, require:true},
-    email: {type: String, require:true, unique:true},
-    password:{type:String, require:true},
-    phoneNumber:{type:String, require:true},
-    balance: { type:Number, require:true},
-    posts: [{type: Types.ObjectId, ref:'Post'}]
+    title: {type:String, require:true},
+    text: {type:String, require:true},
+    price: {type:Number, require: true},
+    city: {type:String, require:true},
+    date: {type: Date, default: Date.now},
+    views: {type: Number, default: 0},
+    owner: [{type: Types.ObjectId, ref:'User'}]
 })
 
-export default model('User', schema)
+export default model('Post', schema)

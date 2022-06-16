@@ -44,7 +44,7 @@
        id="g12"
        transform="scale(0.1)"><path
          d="M 0,0 H 30000 V 24000 H 0 Z"
-         style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         style=" fill:none;fill-rule:nonzero;stroke:none"
          id="path14" /><path
          d="m 26683.7,4625.3 c -486.3,2672.4 -3295.3,3538.4 -3365.8,5153.3 -70.5,1614.9 1601.2,2494.9 966.7,3549.7 -634.4,1054.8 -3843.5,839.1 -4227.6,2327.4 -787.4,3051.6 -3524.1,4474.8 -5171.7,3135.8 C 12660.8,16983.7 12797,14783.8 11210.8,13857.5 9980.02,13138.7 6252.93,12968.3 6532.59,10476.3 6812.24,7984.2 3302.86,8051.2 3316.32,4625.3 H 26683.7"
          style="fill:#f0f2f2;fill-opacity:1;fill-rule:nonzero;stroke:none"

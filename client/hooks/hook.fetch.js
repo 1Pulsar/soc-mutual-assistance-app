@@ -1,15 +1,22 @@
 import {useCallback, useState} from "react";
 import * as axios from "axios"
+import {useSelector} from "react-redux";
 
 const useHttp = () => {
     const [isLoading, setLoading] = useState(false)
     const [error, setError] = useState(null)
+    const jwtToken = useSelector(state=>state.app.jwtToken)
+
     const instance = axios.create({
         withCredentials: false,
         baseURL: "http://localhost:5000/"
     })
+
+    const defaultHeaders = {authorization:`Bearer ${jwtToken}`}
+
+
     const sendRequest = {
-        postData: async (url ,requestData={}, headers={mode: 'cors'}) => {
+        postData: async (url ,requestData=defaultHeaders, headers={mode: 'cors'}) => {
             try {
                 setLoading(true)
                 const response = await instance.post(url, requestData, {headers})
@@ -20,7 +27,7 @@ const useHttp = () => {
                 setLoading(false)
             }
         },
-        getData: async (url, headers={}) => {
+        getData: async (url, headers=defaultHeaders) => {
             try {
                 setLoading(true)
                 const response = await instance.get(url, {headers})
@@ -31,10 +38,10 @@ const useHttp = () => {
                 console.log('Something error during http request', e.message)
             }
         },
-        putData: async (url, requestData={}, headers={}) => {
+        putData: async (url, requestData= {}, headers=defaultHeaders) => {
             try {
                 setLoading(true)
-                const response = await instance.post(url, requestData, {headers})
+                const response = await instance.put(url, requestData, {headers})
                 setLoading(false)
                 return response.data
             } catch (e) {
@@ -42,7 +49,7 @@ const useHttp = () => {
                 setLoading(false)
             }
         },
-        deleteData: async (url, headers={}) => {
+        deleteData: async (url, headers=defaultHeaders) => {
             try {
                 setLoading(true)
                 const response = await instance.delete(url, headers)

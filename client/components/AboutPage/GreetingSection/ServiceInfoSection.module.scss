@@ -1,22 +1,83 @@
-.greeting {
-  background: linear-gradient(90deg, #73f95e,#bee931,#f2d622);;
+.serviceInfo {
+  background: #fff;
   min-height: 700px;
   padding: 0 0 50px 0;
 }
 
-.greetingContainer {
+.serviceInfoContainer {
   max-width: 1057px;
   margin: 0 auto;
   padding: 0 15px;
   box-sizing: content-box;
 }
-.greetingBody {
+.serviceInfoBody {
   width: 100%;
   display: flex;
+  align-items: center;
   flex-direction: column;
   justify-content: center;
+  position: relative;
 }
 
-.greetingImage {
-  height: 300px;
+.serviceInfoCard {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  top: -50px;
+  width: 70%;
+  height: 175px;
+  -webkit-box-shadow: 0 5px 16px 3px rgba(0,0,0,0.38);
+  box-shadow: 0 5px 16px 3px rgba(0,0,0,0.38);
+  background-color: white;
+  border-radius: 15px;
+  transition: .4s;
+  &:hover {
+    top: -60px;
+    -webkit-box-shadow: 0 7px 16px 7px rgba(0,0,0,0.38);
+    box-shadow: 0 7px 16px 7px rgba(0,0,0,0.38);
+  }
 }
+
+.cardHeartImage {
+  position: relative;
+  height: 130%;
+  top: -40px;
+}
+
+.cardInfoWrapper {
+  height:  100%;
+  width: 60%;
+  padding: 20px;
+  font-family: 'Nunito Sans';
+}
+
+.infoTitle {
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+.infoText{
+  font-size: 13px;
+}
+
+.additionalInformationBlock {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.additionalBlockImage {
+  width: 50%;
+}
+
+.additionalInformation {
+  & > h2{
+    font-family: 'Nunito Sans';
+    margin-bottom: 30px;
+  }
+  & > p{
+    font-weight: lighter;
+  }
+}
+
