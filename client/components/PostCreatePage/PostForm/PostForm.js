@@ -28,16 +28,16 @@ const PostForm = () => {
         toast.success("Fields cleaned");
     }
 
-    const submitPostHandler = async() => {
+    const submitPostHandler = async () => {
         try {
             console.log('submit')
             const data = await sendRequest.postData('/api/post/create',
                 {
-                    title:title.value,
+                    title: title.value,
                     text: text.value,
-                    price:Number(price.value),
-                    city:city.value
-                }, {authorization:`Bearer ${jwtToken}`})
+                    price: Number(price.value),
+                    city: city.value
+                }, {authorization: `Bearer ${jwtToken}`})
             if (!data.errors) {
                 toast.success('Your post are successfully published')
                 declineButtonClickFunction()
@@ -49,30 +49,40 @@ const PostForm = () => {
 
     return (
         <div className={style.postFormBody}>
+
             <div className={style.titleAndPriceWrapper}>
-                <InputField error={title.errorsArray.length && title.isDirty} errorsArray={title.errorsArray}
-                            value={title.value} inputId={'title'} inputName={'title'} inputPlaceholder={'Post title'}
-                            inputFieldWidth={'70%'} inputType={'title'} onChange={title.onChange}
-                            onBlur={title.onBlur} maxLength={30} backgroundColor={'rgba(255, 255, 255, 0.9)'}/>
 
-                <InputField error={price.errorsArray.length && price.isDirty} errorsArray={price.errorsArray}
-                            value={price.value} inputId={'price'} inputName={'price'} inputPlaceholder={'Price'}
-                            inputFieldWidth={'13%'} inputType={'price'} onChange={price.onChange}
-                            onBlur={price.onBlur} maxLength={5} backgroundColor={'rgba(255, 255, 255, 0.9)'}/>
+                <div className={style.field1}>
+                    <InputField error={title.errorsArray.length && title.isDirty} errorsArray={title.errorsArray}
+                                value={title.value} inputId={'title'} inputName={'title'}
+                                inputPlaceholder={'Post title'}
+                                inputFieldWidth={'100%'} inputType={'title'} onChange={title.onChange}
+                                onBlur={title.onBlur} maxLength={30} backgroundColor={'rgba(255, 255, 255, 0.9)'}/>
+                </div>
 
-                <InputField error={city.errorsArray.length && city.isDirty} errorsArray={city.errorsArray}
-                            value={city.value} inputId={'city'} inputName={'city'} inputPlaceholder={'City'}
-                            inputFieldWidth={'13%'} inputType={'city'} onChange={city.onChange}
-                            onBlur={city.onBlur} maxLength={15} backgroundColor={'rgba(255, 255, 255, 0.9)'}/>
+                <div className={style.field2}>
+                    <InputField error={price.errorsArray.length && price.isDirty} errorsArray={price.errorsArray}
+                                value={price.value} inputId={'price'} inputName={'price'} inputPlaceholder={'Price'}
+                                inputFieldWidth={'100%'} inputType={'price'} onChange={price.onChange}
+                                onBlur={price.onBlur} maxLength={5} backgroundColor={'rgba(255, 255, 255, 0.9)'}/>
+                </div>
+
+                <div className={style.field3}>
+                    <InputField error={city.errorsArray.length && city.isDirty} errorsArray={city.errorsArray}
+                                value={city.value} inputId={'city'} inputName={'city'} inputPlaceholder={'City'}
+                                inputFieldWidth={'100%'} inputType={'city'} onChange={city.onChange}
+                                onBlur={city.onBlur} maxLength={15} backgroundColor={'rgba(255, 255, 255, 0.9)'}/>
+                </div>
             </div>
 
             <TextArea inputFieldHeight={'200px'} error={text.errorsArray.length && text.isDirty}
                       errorsArray={text.errorsArray}
                       value={text.value} inputId={'text'} inputName={'text'} inputPlaceholder={'Post description'}
                       inputFieldWidth={'100%'} inputType={'text'} onChange={text.onChange}
-                      onBlur={text.onBlur} maxLength={300} backgroundColor={'rgba(255, 255, 255, 0.9)'} />
+                      onBlur={text.onBlur} maxLength={300} backgroundColor={'rgba(255, 255, 255, 0.9)'}/>
             <div className={style.buttonsBlock}>
-                <Button isDisabled={!buttonIsDisabled} clickFunction={submitPostHandler} link={''} borderColor={'#67910d'}
+                <Button isDisabled={!buttonIsDisabled} clickFunction={submitPostHandler} link={''}
+                        borderColor={'#67910d'}
                         innerText={'Submit'} textColor={'#020'} backgroundColor={'#67910d'}
                         hoveredBackgroundColor={'rgba(103, 145, 13, 0.2)'}/>
                 <Button clickFunction={declineButtonClickFunction} link={''} borderColor={'#757575'}

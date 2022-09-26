@@ -20,6 +20,18 @@
   }
 }
 
+@media (max-width: 1057px) {
+  .postCardWrapper {
+    width: 48%;
+  }
+}
+
+@media (max-width: 675px) {
+  .postCardWrapper {
+    width: 100%;
+  }
+}
+
 .rightCornerElements {
   position: absolute;
   top: 10px;

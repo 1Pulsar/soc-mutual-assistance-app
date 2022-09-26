@@ -9,10 +9,10 @@ const Footer = (props) => {
         <footer className={style.footer}>
             <div className={style.footerContainer}>
                 <div className={style.footerBody}>
-                    <InfoColumn />
-                    <LinksColumn header={'Services'} linksList={linksListContent}/>
-                    <LinksColumn header={'More information'} linksList={linksListContent}/>
-                    <LinksColumn header={'Help'} linksList={linksListContent}/>
+                    <div className={style.infoColumnWrapper}><InfoColumn /></div>
+                    <div><LinksColumn header={'Services'} linksList={linksListContent}/></div>
+                    <div><LinksColumn header={'More information'} linksList={linksListContent}/></div>
+                    <div><LinksColumn header={'Help'} linksList={linksListContent}/></div>
                 </div>
             </div>
         </footer>

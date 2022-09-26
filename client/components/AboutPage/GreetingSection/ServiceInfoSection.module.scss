@@ -10,6 +10,7 @@
   padding: 0 15px;
   box-sizing: content-box;
 }
+
 .serviceInfoBody {
   width: 100%;
   display: flex;
@@ -27,15 +28,30 @@
   top: -50px;
   width: 70%;
   height: 175px;
-  -webkit-box-shadow: 0 5px 16px 3px rgba(0,0,0,0.38);
-  box-shadow: 0 5px 16px 3px rgba(0,0,0,0.38);
+  -webkit-box-shadow: 0 5px 16px 3px rgba(0, 0, 0, 0.38);
+  box-shadow: 0 5px 16px 3px rgba(0, 0, 0, 0.38);
   background-color: white;
   border-radius: 15px;
   transition: .4s;
+
   &:hover {
     top: -60px;
-    -webkit-box-shadow: 0 7px 16px 7px rgba(0,0,0,0.38);
-    box-shadow: 0 7px 16px 7px rgba(0,0,0,0.38);
+    -webkit-box-shadow: 0 7px 16px 7px rgba(0, 0, 0, 0.38);
+    box-shadow: 0 7px 16px 7px rgba(0, 0, 0, 0.38);
+  }
+}
+
+@media (max-width: 1057px) {
+  .serviceInfoCard {
+    height: fit-content;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media (max-width: 675px) {
+  .serviceInfoCard {
+    width: 85%;
   }
 }
 
@@ -45,11 +61,26 @@
   top: -40px;
 }
 
+@media (max-width: 1057px) {
+  .cardHeartImage {
+    width: 80%;
+    top: 0;
+  }
+}
+
 .cardInfoWrapper {
-  height:  100%;
+  height: 100%;
   width: 60%;
   padding: 20px;
   font-family: 'Nunito Sans';
+}
+
+@media (max-width: 1057px) {
+  .cardInfoWrapper {
+    height: fit-content;
+    width: 80%;
+    padding-bottom: 0;
+  }
 }
 
 .infoTitle {
@@ -57,8 +88,20 @@
   margin-bottom: 15px;
 }
 
-.infoText{
+.infoText {
   font-size: 13px;
+}
+
+@media (max-width: 675px) {
+  .infoTitle {
+    font-size: 15px;
+    margin-bottom: 10px;
+  }
+
+  .infoText {
+    font-size: 12px;
+
+  }
 }
 
 .additionalInformationBlock {
@@ -72,12 +115,26 @@
 }
 
 .additionalInformation {
-  & > h2{
+  & > h2 {
     font-family: 'Nunito Sans';
     margin-bottom: 30px;
   }
-  & > p{
+
+  & > p {
     font-weight: lighter;
+  }
+}
+
+@media (max-width: 675px) {
+  .additionalInformation {
+    & > h2 {
+      margin-bottom: 20px;
+      font-size: 15px;
+    }
+
+    & > p {
+      font-size: 12px;
+    }
   }
 }
 

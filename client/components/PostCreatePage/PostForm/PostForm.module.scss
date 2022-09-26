@@ -1,6 +1,37 @@
 .titleAndPriceWrapper {
   display: flex;
   justify-content: space-between;
+  gap: 15px;
+}
+
+.field1 {
+  width: 70%;
+}
+
+.field2 {
+  width: 13%;
+}
+
+.field3 {
+  width: 13%;
+}
+
+@media (max-width: 675px) {
+  .titleAndPriceWrapper {
+    flex-wrap: wrap;
+    gap: 0;
+  }
+  .field1 {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  .field2 {
+    width: 48%;
+  }
+  .field3 {
+    width: 48%;
+  }
+
 }
 
 .postFormBody {

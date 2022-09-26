@@ -1,5 +1,5 @@
 .postCreate {
-  background: linear-gradient(90deg, #73f95e,#bee931,#f2d622);
+  background: linear-gradient(90deg, #73f95e, #bee931, #f2d622);
   min-height: 1000px;
   padding: 0 0 50px 0;
 }
@@ -10,6 +10,7 @@
   padding: 0 15px;
   box-sizing: content-box;
 }
+
 .postCreateBody {
   width: 100%;
   position: relative;
@@ -26,14 +27,35 @@
   opacity: 0;
   pointer-events: none;
   transition: 1s;
+
   &.active {
     opacity: 1;
     pointer-events: all;
   }
 }
 
+@media (max-width: 675px) {
+  .contentWrapper {
+    gap: 30px;
+  }
+}
+
 .postForm {
   z-index: 10;
+}
+
+.instructionText {
+  text-align: center;
+  line-height: 50px;
+  position: relative;
+  top: -30px;
+}
+
+@media (max-width: 675px) {
+  .instructionText {
+    font-size: 13px;
+    line-height: 35px;
+  }
 }
 
 .afterPostFormImage {

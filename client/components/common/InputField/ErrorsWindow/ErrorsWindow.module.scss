@@ -5,7 +5,7 @@
 }
 
 .warningIcon {
-    height: 20px;
+  height: 20px;
   position: relative;
 }
 
@@ -13,9 +13,11 @@
   display: flex;
   flex-flow: column;
   font-size: 12px;
+
   &.p {
     white-space: pre;
   }
+
   position: absolute;
   left: 40px;
   opacity: 0;
@@ -27,8 +29,15 @@
   width: 200px;
   overflow: hidden;
   transition: .5s;
+
+  &.active {
+    opacity: 1;
+  }
 }
 
-.warningWindow.active {
-  opacity: 1;
+@media (max-width: 1600px) {
+  .warningWindow {
+    left: -170px;
+    bottom: 35px;
+  }
 }

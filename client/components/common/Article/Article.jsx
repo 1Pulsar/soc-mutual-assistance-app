@@ -11,7 +11,7 @@ const Article = ({buttonClickHandler ,titleText, paragraphText, whiteDecorationC
                     <h1 className={style.articleTitle}>{titleText}</h1>
                     <div className={style.decorationBlockRight}/>
                 </div>
-                {showText && <p>{paragraphText}</p>}
+                {showText && <p className={style.articleContent}>{paragraphText}</p>}
                 {showButton && <Button link={''} clickFunction={buttonClickHandler}  borderColor={'#67910d'} innerText={'Sign in'} textColor={'#67910d'}
                          hoveredBackgroundColor={'rgba(0, 2, 0, 0.2)'}/>}
             </article>

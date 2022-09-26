@@ -10,6 +10,7 @@
   box-sizing: content-box;
   position: relative;
 }
+
 .postsBody {
   width: 100%;
   display: flex;
@@ -21,12 +22,24 @@
 
 .articleWrapper {
   position: absolute;
-  left: 75px;
+  left: 0;
+  margin: 0 auto;
+  width: 100%;
   pointer-events: none;
   top: -200px;
   transition: 1s;
+
   &.active {
     top: 100px;
+  }
+}
+
+@media (max-width: 675px){
+  .articleWrapper {
+    left: -12px;
+    &.active {
+      top: 200px;
+    }
   }
 }
 
@@ -37,8 +50,16 @@
   gap: 30px;
   opacity: 0;
   transition: 1s;
+
   &.active {
     top: 100px;
     opacity: 1;
+  }
+}
+
+@media (max-width: 1057px) {
+  .mappedPostsContainer {
+    justify-content: center;
+    gap: 20px;
   }
 }
